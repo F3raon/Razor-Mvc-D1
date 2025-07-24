@@ -1,0 +1,97 @@
+﻿@page
+@model Razor_Day1.Pages.Form_RegistrationModel
+@{
+
+}
+@{
+	Layout = "_MyCustomLayout";
+}
+
+<style>
+	#title
+	{
+		color: dimgrey;
+	}
+
+	.female {
+		color: red;
+	}
+
+	.male {
+		color: blue;
+	}
+</style>
+<h1 id = "title" > Student Registration  </h1>
+
+<form>
+
+	<br />
+	<hr />
+	<br />
+	<label for="username">Name </label>
+
+	<input type="text" name="username" />
+
+	<br />
+	<hr />
+	<br />
+
+	<label for="age" >Age </label> 
+
+	<input type="number" name="age" />
+
+	<br />
+	<hr />
+	<br />
+	<label for="address">Address </label>
+
+	<input type="text" name="address" />
+
+
+	<br />
+	<br />
+	<hr />
+	<br />
+
+	<label>Gender:</label>
+	<input type="radio" id="male" name="gender" value="Male" />
+	<label for="male">Male</label>
+
+	<input type="radio" id="female" name="gender" value="Female" />
+	<label for="female">Female</label>
+	<br />
+	<br />
+	<hr />
+	<br />
+	<input type="submit" class="btn btn-outline-primary"/>
+</form>
+
+@{
+	string? username = Request.Query["username"];
+	string? age1 = Request.Query["age"];
+	string? address = Request.Query["address"];
+	string? gender = Request.Query["gender"];
+
+	int.TryParse(age1, out int age);
+
+	if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(age1) && !string.IsNullOrEmpty(address) && !string.IsNullOrEmpty(gender))
+	{
+		if (age < 18)
+		{
+			<p style="color:red;">User must be over 18</p>
+		}
+		else
+		{
+			@*
+			<h2 class="male"><b>Name:</b> @username</h2>
+			<h2 class="male"><b>Age:</b> @age</h2>
+			<h2 class="male"><b>Address:</b> @address</h2>
+			<h2 class="male"><b>Gender:</b> @gender</h2>
+			*@
+			<h2 class="@(gender == "Female" ? "female" : "male")"> Hello : @username <br /> You Age Is : @age <br />
+				Your Address Is : @address <br /> Your Gender Is : @gender
+			</h2>
+		}
+	}
+
+}
