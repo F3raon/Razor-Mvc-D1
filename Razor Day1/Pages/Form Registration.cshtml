@@ -82,12 +82,8 @@
 		}
 		else
 		{
-			@*
-			<h2 class="male"><b>Name:</b> @username</h2>
-			<h2 class="male"><b>Age:</b> @age</h2>
-			<h2 class="male"><b>Address:</b> @address</h2>
-			<h2 class="male"><b>Gender:</b> @gender</h2>
-			*@
+			
+		
 			<h2 class="@(gender == "Female" ? "female" : "male")"> Hello : @username <br /> You Age Is : @age <br />
 				Your Address Is : @address <br /> Your Gender Is : @gender
 			</h2>
